@@ -16,5 +16,5 @@ steps:
   region: us-west-2
   bucket: code-deploy12345
   target: lambda-dir
-  source: lambda-project-${DRONE_BUILD_NUMBER}.zip
+  source: lambda-project-${DRONE_BUILD_NUMBER}.zip 
 
