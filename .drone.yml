@@ -17,6 +17,6 @@ pipeline:
   deploy-lambda:
     image: omerxx/drone-lambda-plugin
     #pull: true
-    function_name: my-function
+    function_name: suraksha
     s3_bucket: code-deploy12345
     file_name: drone/revenue-report-${DRONE_BUILD_NUMBER}.zip
