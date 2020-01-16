@@ -1,20 +1,23 @@
-kind: pipeline
-name: default
-workspace:
-  base: /tmp
-  path: "."
-steps:
-- name: build
-  image: python:2.7-alpine
-  commands:
-    - apk update && apk add zip
-    - pip install -r requirements.txt -t .
-    - zip -r -9 lambda-project-${DRONE_BUILD_NUMBER}.zip *
-- name: s3-publish
-  image: plugins/s3
-  acl: private
-  region: us-west-2
-  bucket: code-deploy12345
-  target: lambda-dir
-  source: lambda-project-${DRONE_BUILD_NUMBER}.zip 
+pipeline:
+  build:
+    image: python:2.7-alpine
+    commands:
+      - apk update && apk add zip
+      - pip install -r requirements.txt -t .
+      - zip -r -9 lambda-project-${DRONE_BUILD_NUMBER}.zip *
+
+  s3-publish:
+    image: plugins/s3
+    #acl: private
+    region: us-west-2
+    bucket: code-deploy12345
+    target: drone
+    source: lambda-project-${DRONE_BUILD_NUMBER}.zip
+
+  deploy-lambda:
+    image: omerxx/drone-lambda-plugin
+    #pull: true
+    function_name: my-function
+    s3_bucket: code-deploy12345
+    file_name: drone/revenue-report-${DRONE_BUILD_NUMBER}.zip
 
