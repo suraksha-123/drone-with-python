@@ -20,4 +20,4 @@ pipeline:
     #pull: true
     function_name: suraksha
     s3_bucket: surakshadrone
-    file_name: drone/revenue-report-${DRONE_BUILD_NUMBER}.zip
+    file_name: drone/lambda-project-${DRONE_BUILD_NUMBER}.zip
