@@ -16,6 +16,7 @@ pipeline:
 
   deploy-lambda:
     image: omerxx/drone-lambda-plugin
+    region: us-west-2
     #pull: true
     function_name: suraksha
     s3_bucket: code-deploy12345
