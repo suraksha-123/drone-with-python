@@ -9,15 +9,15 @@ pipeline:
   s3-publish:
     image: plugins/s3
     #acl: private
-    region: us-west-2
-    bucket: code-deploy12345
+    region: us-east-1
+    bucket: surakshadrone
     target: drone
     source: lambda-project-${DRONE_BUILD_NUMBER}.zip
 
   deploy-lambda:
     image: omerxx/drone-lambda-plugin
-    region: us-west-2
+    #region: us-west-2
     #pull: true
     function_name: suraksha
-    s3_bucket: code-deploy12345
+    s3_bucket: surakshadrone
     file_name: drone/revenue-report-${DRONE_BUILD_NUMBER}.zip
