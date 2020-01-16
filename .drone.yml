@@ -20,4 +20,3 @@ pipeline:
     function_name: my-function
     s3_bucket: code-deploy12345
     file_name: drone/revenue-report-${DRONE_BUILD_NUMBER}.zip
-
